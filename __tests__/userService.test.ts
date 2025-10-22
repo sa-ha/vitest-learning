@@ -2,7 +2,7 @@
 import { getUser } from '../src/userService';
 
 // fetch をグローバルにモック
-global.fetch = vi.fn();
+const fetchMock = vi.spyOn(global, 'fetch');
 
 describe('getUser', () => {
   beforeEach(() => {
@@ -11,18 +11,18 @@ describe('getUser', () => {
 
   it('fetches user name', async () => {
     // https://vitest.dev/api/mock.html#mockresolvedvalue
-    (global.fetch as any).mockResolvedValue({
+    fetchMock.mockResolvedValue({
       ok: true,
       json: async () => ({ name: 'Alice' }),
     });
 
     const name = await getUser(1);
     expect(name).toBe('Alice');
-    expect(global.fetch).toHaveBeenCalledWith('https://api.example.com/users/1');
+    expect(fetchMock).toHaveBeenCalledWith('https://api.example.com/users/1');
   });
 
   it('throws on network error', async () => {
-    (global.fetch as any).mockResolvedValue({ ok: false });
+    fetchMock.mockResolvedValue({ ok: false });
 
     await expect(getUser(1)).rejects.toThrow('Failed to fetch');
   });
