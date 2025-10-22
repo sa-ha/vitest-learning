@@ -14,7 +14,11 @@ export default defineConfig({
       provider: 'v8', // or 'istanbul'
       reporter: ['text', 'html', 'json'], // レポート形式
       reportsDirectory: '__tests__/coverage',     // 出力先
-      exclude: ['node_modules/', 'coverage/'],
+      exclude: [
+        'node_modules/',
+        'coverage/',
+        '**/vitest.config.**',
+      ],
       // 閾値設定（%）
       thresholds: {
       statements: 80,
