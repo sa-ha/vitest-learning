@@ -2,7 +2,7 @@
 import { getUser } from '../src/userService';
 
 // fetch をグローバルにモック
-const fetchMock = vi.spyOn(global, 'fetch');
+const fetchMock = vi.spyOn(globalThis, 'fetch');
 
 describe('getUser', () => {
   beforeEach(() => {

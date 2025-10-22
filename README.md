@@ -1,14 +1,18 @@
-# Vitestを学習記録
+# vitest-learning
 
-## commands
-テスト実行
-```
-npm test
-```
+最小限の TypeScript + Vitest テスト環境
 
-カバレッジ
-```
-npm run test:coverage
-または
-npx vitest run --coverage
+## 機能
+- TypeScript 対応
+- カバレッジレポート（V8）
+- Watch モード
+- GitHub Actions CI
+- 環境変数テスト対応
+
+## 使い方
+```bash
+npm install
+npm test          # 1回実行
+npm run test:watch # 開発モード
+npm run test:coverage # カバレッジ
 ```
